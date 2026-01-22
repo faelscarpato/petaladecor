@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+:root {
+  color: #111827;
+  background-color: #f2f4f8;
+  --brand-blue: #0b4ea2;
+  --brand-red: #e0001a;
+  --brand-ink: #111827;
+  --brand-bg: #f2f4f8;
+  --brand-surface: #ffffff;
+  --brand-border: #e5e7eb;
+  --brand-whatsapp: #25d366;
+}
+
+body {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.5;
+  background-color: var(--brand-bg);
+  color: var(--brand-ink);
+}
+
+* {
+  box-sizing: border-box;
+}
