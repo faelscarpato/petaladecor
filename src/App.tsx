@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   BrowserRouter,
   Link,
@@ -7,6 +7,12 @@ import {
   useLocation,
   useNavigate
 } from "react-router-dom";
+import heroImage from "./assets/hero.png";
+import produto1 from "./assets/produto1.png";
+import nossasenhora1 from "./assets/nossasenhora1.png";
+import nossasenhora2 from "./assets/nossasenhora2.png";
+import nossasenhora3 from "./assets/nossasenhora3.png";
+import nossasenhora4 from "./assets/nossasenhora4.png";
 
 const Header = () => (
   <header className="sticky top-0 z-50 border-b border-[#f4f0f1] bg-white/80 backdrop-blur-md">
@@ -65,7 +71,7 @@ const Footer = () => (
         </a>
       </div>
       <p className="serif-text mb-4 text-3xl tracking-tight">
-        Pétala Porcelana & Decor
+        Pétala & Decor
       </p>
       <p className="text-xs uppercase tracking-widest text-[#886369]">
         Rua da Porcelana, 120 • Pedreira, SP
@@ -81,7 +87,7 @@ const SplashPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const timer = setTimeout(() => navigate("/home"), 3000);
+    const timer = setTimeout(() => navigate("/home"), 3500);
     return () => clearTimeout(timer);
   }, [navigate]);
 
@@ -106,7 +112,7 @@ const SplashPage = () => {
         </div>
         <div
           className="reveal-item flex flex-col items-center text-center"
-          style={{ animationDelay: "0.2s" }}
+          style={{ animationDelay: "0.3s" }}
         >
           <h1 className="serif-text mb-2 text-5xl font-light italic tracking-tight text-primary md:text-7xl">
             Pétala Decor
@@ -131,134 +137,208 @@ const SplashPage = () => {
   );
 };
 
-const HomePage = () => (
-  <div>
-    <Header />
-    <main>
-      <section className="relative flex h-[90vh] items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img
-            alt="Premium Porcelain Dinnerware"
-            className="h-full w-full object-cover"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDibsU09TSRuzySQNvrWCBMTOh9N333WbTzscLpTFWJa-FkpsKUOdNePCwvKyrJJNgRnZZzU_TeLtJ8m15fxO_Dkgz_YoxDpz6W2jweZB6_qcjgctB-Hg4EroGw10jlMJL84FyFgPjTd70hzRb14iqWk0fcV4U4D162gy8J8OmYe2ShR5_B1gJprLteYS14hSpbS9rq2VHMQ9CAbAXz_efA4caZ7PWSusNYnW6VREY699yifgDr34q9hx3xRpHZNQCulrh2VWdU_AI"
-          />
-          <div className="absolute inset-0 bg-black/20" />
-        </div>
-        <div className="relative z-10 px-6 text-center">
-          <h1 className="serif-text mb-8 text-5xl text-white drop-shadow-lg md:text-8xl">
-            A Arte da Porcelana
-          </h1>
-          <p className="mx-auto mb-10 max-w-2xl text-lg font-light tracking-wide text-white/90 md:text-xl">
-            Descubra a sofisticação artesanal de Pedreira em cada detalhe de
-            nossa coleção exclusiva.
-          </p>
-          <Link
-            className="inline-block bg-white/90 px-10 py-4 text-xs font-bold uppercase tracking-[0.2em] text-[#181112] transition-all duration-500 hover:bg-primary hover:text-white"
-            to="/collection"
-          >
-            Shop Now
-          </Link>
-        </div>
-      </section>
+const HomePage = () => {
+  const carouselRef = useRef<HTMLDivElement | null>(null);
+  const [carouselVisible, setCarouselVisible] = useState(false);
 
-      <section className="flex flex-col">
-        {[
-          {
-            title: "Vaso Terracota Minimal",
-            price: "R$ 420,00",
-            img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDgzwnzQq9Co2uLaa2ej_utufi3NMPk3bCE6ZXuH-zQK0w0Q8qZhdv1ad2Z8dVpH1kGGun_pflPntrazBQioVP9g5vXS_t09Jw5_Oueo46FJiTFxDhdTm87vAza7zCEEZ2tGV8jb6aOtseBryi9mzgsktqK0GzB4s4cAx07gv32_Q-w4Ra14ShVYxj-IKf8HxN_UoTUGGzwVN2byfPrBzaynME3EsMHfpKqCkjdMBtbft_El9KqeLe-F8mVYTYAcnT-wQrAhbguUCI",
-            badge: "Destaque da Estação",
-            align: "ml-auto"
-          },
-          {
-            title: "Prato Decorativo Pétala",
-            price: "R$ 150,00",
-            img: "https://lh3.googleusercontent.com/aida-public/AB6AXuBXx_3E-4UwKJh_SOYNcAQ7GuRW0k2bYPW3JVZ74kOtY4DysYdjz0lpkuqwrOfp57pcaGFHa4tqIgBVm16w4LO3DpSP1C4qz85-G0nGHgPvYQFp16zIkbYkKP9Y7_ue88KCaEKl6DfDG3B1w7jZy522UnK9SqlvF2AKiobkXuhM1bJ0yCM16_b11NmlyxfCgXiJwxbAjaq5s2cQ9BT09F0U54dOn9DqIxKFUI73-j2vegmY2uMLfDrQdGKdsl07AV2VlGoFpQVUR9U",
-            badge: "Coleção Pétala",
-            align: "mr-auto"
-          },
-          {
-            title: "Ânfora Azul Cobalto",
-            price: "R$ 680,00",
-            img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCo5cZIxRj_Z46buoeP9VycnnxFufNN-ftEmGH-EPMHDRQof0MtX4pcreBvscG1P2xnixqcGxEEvGmspnOrY6ZCpO9C-XufZPsZ3ON2NGZOZo89sY-IYRdRBmD7SbfGTEq9T-2P6BI4lAxn1IxSE3rSv3BilaAJLLy4xcFuu_JhJuDAK3-5M84mGqsib-gC9yAz31ZfgWn_SEuyAr8prbuY75aLkhyJF3jwmpjuOmM7ddDLfyWwkXBuanYpZS1GYMJOjcW2uXMUpT4",
-            badge: "Edição Limitada",
-            align: "ml-auto"
-          }
-        ].map((item, idx) => (
-          <div key={idx} className="relative flex w-full flex-col items-center">
-            <div className="w-full overflow-hidden bg-[#f7f3f0]">
-              <img
-                alt={item.title}
-                className="scroll-scale-img h-[80vh] w-full object-cover"
-                src={item.img}
-              />
-            </div>
-            <div className="mx-auto w-full max-w-7xl px-6 pb-32 lg:px-10 -mt-24 md:-mt-32">
-              <div
-                className={`space-y-6 border border-[#f4f0f1] bg-white/95 p-8 shadow-xl backdrop-blur-sm md:p-12 ${item.align} max-w-md`}
-              >
-                <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-primary">
-                  {item.badge}
-                </span>
-                <h2 className="serif-text text-4xl leading-tight text-[#181112]">
-                  {item.title}
-                </h2>
-                <p className="text-base italic leading-relaxed text-[#5a4a4c]">
-                  "Artesania fina em cada detalhe, direto de nossa oficina em
-                  Pedreira-SP."
-                </p>
-                <p className="serif-text text-xl text-primary">{item.price}</p>
-                <div className="pt-4">
-                  <Link
-                    className="border-b-2 border-primary pb-1 text-xs font-bold uppercase tracking-widest transition-colors hover:text-primary/70"
-                    to="/product/1"
-                  >
-                    Conhecer Peça
-                  </Link>
+  useEffect(() => {
+    const target = carouselRef.current;
+    if (!target) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setCarouselVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.35 }
+    );
+
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div>
+      <Header />
+      <main>
+        <section className="relative flex h-[90vh] items-center justify-center overflow-hidden">
+          <div className="absolute inset-0 z-0">
+            <img
+              alt="Premium Porcelain Dinnerware"
+              className="h-full w-full object-cover"
+              src={heroImage}
+            />
+            <div className="absolute inset-0 bg-black/20" />
+          </div>
+          <div className="relative z-10 px-6 text-center">
+            <h1 className="serif-text mb-8 text-5xl text-white drop-shadow-lg md:text-8xl">
+              A Arte da Resina
+            </h1>
+            <p className="mx-auto mb-10 max-w-2xl text-lg font-light tracking-wide text-white/90 md:text-xl">
+              Descubra a sofisticação artesanal de Pedreira em cada detalhe de
+              nossa coleção exclusiva.
+            </p>
+            <Link
+              className="inline-block bg-white/90 px-10 py-4 text-xs font-bold uppercase tracking-[0.2em] text-[#181112] transition-all duration-500 hover:bg-primary hover:text-white"
+              to="/collection"
+            >
+              Compre Agora
+            </Link>
+          </div>
+        </section>
+
+        <section className="flex flex-col">
+          <div
+            ref={carouselRef}
+            className={`relative overflow-hidden bg-[#f7f3f0] py-16 transition-all duration-700 ${
+              carouselVisible ? "carousel-in" : "carousel-out"
+            }`}
+          >
+            <div className="mx-auto max-w-7xl px-6 lg:px-10">
+              <div className="flex items-center justify-between gap-6">
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-primary">
+                    Nossa Senhora
+                  </p>
+                  <h2 className="serif-text mt-4 text-3xl text-[#181112] md:text-4xl">
+                    Coleção especial em destaque
+                  </h2>
                 </div>
+                <p className="hidden max-w-sm text-sm italic text-[#5a4a4c] md:block">
+                  Uma sequência contemplativa com acabamento artesanal e
+                  presença delicada.
+                </p>
+              </div>
+            </div>
+            <div className="mt-10">
+              <div className="carousel-track">
+                {[nossasenhora1, nossasenhora2, nossasenhora3, nossasenhora4].map(
+                  (img, idx) => (
+                    <div key={`ns-1-${idx}`} className="carousel-card">
+                      <img
+                        src={img}
+                        alt={`Nossa Senhora ${idx + 1}`}
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
+                  )
+                )}
+                {[nossasenhora1, nossasenhora2, nossasenhora3, nossasenhora4].map(
+                  (img, idx) => (
+                    <div key={`ns-2-${idx}`} className="carousel-card">
+                      <img
+                        src={img}
+                        alt={`Nossa Senhora ${idx + 1}`}
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
+                  )
+                )}
               </div>
             </div>
           </div>
-        ))}
-      </section>
+          {[
+            {
+              title: "Nossa Senhora 20 cm",
+              price: "R$ 120,00",
+              img: produto1,
+              badge: "Destaque da Pétala",
+              align: "ml-auto"
+            },
+            {
+              title: "Prato Decorativo Pétala",
+              price: "R$ 150,00",
+              img: "https://lh3.googleusercontent.com/aida-public/AB6AXuBXx_3E-4UwKJh_SOYNcAQ7GuRW0k2bYPW3JVZ74kOtY4DysYdjz0lpkuqwrOfp57pcaGFHa4tqIgBVm16w4LO3DpSP1C4qz85-G0nGHgPvYQFp16zIkbYkKP9Y7_ue88KCaEKl6DfDG3B1w7jZy522UnK9SqlvF2AKiobkXuhM1bJ0yCM16_b11NmlyxfCgXiJwxbAjaq5s2cQ9BT09F0U54dOn9DqIxKFUI73-j2vegmY2uMLfDrQdGKdsl07AV2VlGoFpQVUR9U",
+              badge: "Coleção Pétala",
+              align: "mr-auto"
+            },
+            {
+              title: "Ânfora Azul Cobalto",
+              price: "R$ 680,00",
+              img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCo5cZIxRj_Z46buoeP9VycnnxFufNN-ftEmGH-EPMHDRQof0MtX4pcreBvscG1P2xnixqcGxEEvGmspnOrY6ZCpO9C-XufZPsZ3ON2NGZOZo89sY-IYRdRBmD7SbfGTEq9T-2P6BI4lAxn1IxSE3rSv3BilaAJLLy4xcFuu_JhJuDAK3-5M84mGqsib-gC9yAz31ZfgWn_SEuyAr8prbuY75aLkhyJF3jwmpjuOmM7ddDLfyWwkXBuanYpZS1GYMJOjcW2uXMUpT4",
+              badge: "Edição Limitada",
+              align: "ml-auto"
+            }
+          ].map((item, idx) => (
+            <div key={idx} className="relative flex w-full flex-col items-center">
+              <div className="w-full overflow-hidden bg-[#f7f3f0]">
+                <img
+                  alt={item.title}
+                  className="scroll-scale-img h-[80vh] w-full object-cover"
+                  src={item.img}
+                />
+              </div>
+              <div className="mx-auto w-full max-w-7xl px-6 pb-32 lg:px-10 -mt-24 md:-mt-32">
+                <div
+                  className={`space-y-6 border border-[#f4f0f1] bg-white/95 p-8 shadow-xl backdrop-blur-sm md:p-12 ${item.align} max-w-md`}
+                >
+                  <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-primary">
+                    {item.badge}
+                  </span>
+                  <h2 className="serif-text text-4xl leading-tight text-[#181112]">
+                    {item.title}
+                  </h2>
+                  <p className="text-base italic leading-relaxed text-[#5a4a4c]">
+                    "Artesania fina em cada detalhe, direto de nossa oficina em
+                    Pedreira-SP."
+                  </p>
+                  <p className="serif-text text-xl text-primary">{item.price}</p>
+                  <div className="pt-4">
+                    <Link
+                      className="border-b-2 border-primary pb-1 text-xs font-bold uppercase tracking-widest transition-colors hover:text-primary/70"
+                      to="/product/1"
+                    >
+                      Conhecer Peça
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </section>
 
-      <section className="bg-[#f7f3f0] py-32">
-        <div className="mx-auto max-w-4xl px-6 text-center">
-          <span className="material-symbols-outlined mb-6 text-4xl text-primary">
-            workspace_premium
-          </span>
-          <h2 className="serif-text mb-8 text-4xl">Tradição de Pedreira-SP</h2>
-          <p className="mb-12 text-lg leading-relaxed text-[#5a4a4c]">
-            Situada no coração do maior polo cerâmico do Brasil, a Pétala Decor
-            une as técnicas ancestrais da porcelana de Pedreira com um olhar
-            contemporâneo e sofisticado.
-          </p>
-          <div className="grid grid-cols-3 gap-8 border-y border-black/5 py-12">
-            <div>
-              <p className="serif-text text-3xl text-primary">100%</p>
-              <p className="text-[10px] uppercase tracking-widest text-[#886369]">
-                Feito à Mão
-              </p>
-            </div>
-            <div>
-              <p className="serif-text text-3xl text-primary">30+</p>
-              <p className="text-[10px] uppercase tracking-widest text-[#886369]">
-                Anos de Tradição
-              </p>
-            </div>
-            <div>
-              <p className="serif-text text-3xl text-primary">Eco</p>
-              <p className="text-[10px] uppercase tracking-widest text-[#886369]">
-                Sustentável
-              </p>
+        <section className="bg-[#f7f3f0] py-32">
+          <div className="mx-auto max-w-4xl px-6 text-center">
+            <span className="material-symbols-outlined mb-6 text-4xl text-primary">
+              workspace_premium
+            </span>
+            <h2 className="serif-text mb-8 text-4xl">Tradição de Pedreira-SP</h2>
+            <p className="mb-12 text-lg leading-relaxed text-[#5a4a4c]">
+              Situada no coração do maior polo cerâmico do Brasil, a Pétala Decor
+              une as técnicas ancestrais da porcelana de Pedreira com um olhar
+              contemporâneo e sofisticado.
+            </p>
+            <div className="grid grid-cols-3 gap-8 border-y border-black/5 py-12">
+              <div>
+                <p className="serif-text text-3xl text-primary">100%</p>
+                <p className="text-[10px] uppercase tracking-widest text-[#886369]">
+                  Feito à Mão
+                </p>
+              </div>
+              <div>
+                <p className="serif-text text-3xl text-primary">30+</p>
+                <p className="text-[10px] uppercase tracking-widest text-[#886369]">
+                  Anos de Tradição
+                </p>
+              </div>
+              <div>
+                <p className="serif-text text-3xl text-primary">Eco</p>
+                <p className="text-[10px] uppercase tracking-widest text-[#886369]">
+                  Sustentável
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-    </main>
-    <Footer />
-  </div>
-);
+        </section>
+      </main>
+      <Footer />
+    </div>
+  );
+};
 
 const ProductPage = () => (
   <div>
@@ -673,3 +753,4 @@ export default function App() {
     </BrowserRouter>
   );
 }
+

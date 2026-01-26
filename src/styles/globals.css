@@ -76,8 +76,48 @@ html {
   }
 }
 
+.carousel-track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  animation: carousel-slide 22s linear infinite;
+  padding: 0 24px;
+}
+
+.carousel-card {
+  width: 260px;
+  height: 360px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #efe9e4;
+  box-shadow: 0 14px 40px rgba(24, 17, 18, 0.12);
+}
+
+.carousel-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.carousel-out {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+@keyframes carousel-slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .carousel-track {
+    animation: none;
   }
 }
